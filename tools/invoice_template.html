@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice APX-2026-001 — Apex Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════
+       APEX DIGITAL · INVOICE TEMPLATE
+       Brand: #0A0E1F navy · #00CFFF cyan · #8B2BE2 purple
+    ═══════════════════════════════════════════════ */
+
+    :root {
+      --navy:       #0A0E1F;
+      --navy-mid:   #111829;
+      --cyan:       #00CFFF;
+      --blue:       #185FA5;
+      --purple:     #8B2BE2;
+      --purple-dk:  #3C3489;
+      --grad:       linear-gradient(135deg, #00CFFF 0%, #185FA5 52%, #8B2BE2 100%);
+      --grad-h:     linear-gradient(90deg,  #00CFFF 0%, #185FA5 52%, #8B2BE2 100%);
+      --text:       #111827;
+      --muted:      #6B7280;
+      --border:     #E5E7F0;
+      --bg-alt:     #F8F9FC;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #D8DCF0;
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      min-height: 100vh;
+      padding: 36px 20px 72px;
+    }
+
+    /* ─── ACTION BAR (screen only) ─── */
+    .action-bar {
+      max-width: 860px;
+      margin: 0 auto 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .doc-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: #8891B0;
+    }
+
+    .btn-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 22px;
+      background: var(--grad);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      box-shadow:
+        0 0 0 1px rgba(0,207,255,0.2),
+        0 4px 20px rgba(0,207,255,0.22),
+        0 2px 8px  rgba(139,43,226,0.18);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-pdf:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 0 1px rgba(0,207,255,0.3),
+        0 10px 32px rgba(0,207,255,0.28),
+        0 4px 14px rgba(139,43,226,0.24);
+    }
+    .btn-pdf svg { flex-shrink: 0; }
+
+    /* ─── INVOICE SHELL ─── */
+    .invoice {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow:
+        0 1px 2px  rgba(10,14,31,0.04),
+        0 6px 20px rgba(10,14,31,0.09),
+        0 24px 72px rgba(10,14,31,0.13);
+    }
+
+    /* ─── HEADER ─── */
+    .inv-header {
+      background: var(--navy);
+      padding: 44px 52px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Geometric facet accent — echoes logo's angular planes */
+    .inv-header::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 340px; height: 100%;
+      background: linear-gradient(
+        145deg,
+        transparent 0%,
+        transparent 50%,
+        rgba(0,207,255,0.035) 50%,
+        rgba(0,207,255,0.035) 100%
+      );
+      pointer-events: none;
+    }
+    .inv-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 200px; height: 60px;
+      background: linear-gradient(
+        135deg,
+        transparent 50%,
+        rgba(139,43,226,0.06) 50%
+      );
+      pointer-events: none;
+    }
+
+    /* brand left */
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-mark { filter: drop-shadow(0 4px 18px rgba(0,207,255,0.28)); }
+
+    .brand-text { display: flex; flex-direction: column; gap: 4px; }
+
+    .brand-apex {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.26em;
+      line-height: 1;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .brand-sub {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .brand-tag {
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.05em;
+    }
+
+    /* invoice label right */
+    .inv-label { text-align: right; position: relative; z-index: 1; }
+
+    .inv-word {
+      font-family: 'Syne', sans-serif;
+      font-size: 60px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .inv-num {
+      margin-top: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.42);
+      text-transform: uppercase;
+    }
+
+    /* ─── GRADIENT STRIPE ─── */
+    .grad-stripe {
+      height: 3.5px;
+      background: var(--grad-h);
+    }
+
+    /* ─── META STRIP ─── */
+    .meta-strip {
+      background: var(--bg-alt);
+      padding: 15px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-dates { display: flex; gap: 44px; }
+
+    .meta-item { display: flex; flex-direction: column; gap: 2px; }
+
+    .meta-key {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .meta-val {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* status badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 15px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .badge-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .badge.unpaid {
+      background: #FFFBEB;
+      color: #92400E;
+      border: 1px solid #FCD34D;
+    }
+    .badge.unpaid .badge-dot { background: #F59E0B; }
+
+    .badge.paid {
+      background: #ECFDF5;
+      color: #065F46;
+      border: 1px solid #6EE7B7;
+    }
+    .badge.paid .badge-dot { background: #10B981; }
+
+    /* ─── BILLING ─── */
+    .billing {
+      padding: 32px 52px 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .billing-block h5 {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--blue);
+      padding-bottom: 9px;
+      margin-bottom: 13px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .b-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .b-company {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .b-detail {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    /* ─── SERVICES TABLE ─── */
+    .table-wrap { padding: 28px 52px 4px; }
+
+    .section-title {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .services-tbl {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .services-tbl thead tr.head-main {
+      background: var(--navy);
+    }
+    .services-tbl thead tr.grad-bar td {
+      height: 2px;
+      padding: 0;
+      background: linear-gradient(90deg, #00CFFF 0%, #185FA5 52%, #8B2BE2 100%);
+    }
+
+    .services-tbl thead th {
+      padding: 12px 14px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      text-align: left;
+      white-space: nowrap;
+    }
+    .services-tbl th.r, .services-tbl td.r { text-align: right; }
+    .services-tbl th.c, .services-tbl td.c { text-align: center; }
+
+    .services-tbl tbody tr:nth-child(odd)  { background: #fff; }
+    .services-tbl tbody tr:nth-child(even) { background: var(--bg-alt); }
+
+    .services-tbl tbody td {
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .services-tbl td.svc-name {
+      font-weight: 600;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .services-tbl td.svc-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .services-tbl td.svc-amt { font-weight: 600; }
+
+    /* ─── TOTALS ─── */
+    .totals-wrap {
+      padding: 24px 52px 32px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* Gradient border via padding + bg trick */
+    .totals-outer {
+      width: 300px;
+      background: var(--grad);
+      border-radius: 9px;
+      padding: 1.5px;
+    }
+
+    .totals-inner {
+      background: #fff;
+      border-radius: 7.5px;
+      overflow: hidden;
+    }
+
+    .totals-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .totals-row:last-child { border-bottom: none; }
+
+    .t-label { color: var(--muted); font-size: 13px; font-weight: 400; }
+    .t-val   { font-size: 13px; font-weight: 600; color: var(--text); }
+
+    .totals-row.disc .t-label,
+    .totals-row.disc .t-val { color: #059669; }
+
+    .totals-row.grand {
+      background: var(--grad);
+      padding: 16px 18px;
+      border: none;
+    }
+    .totals-row.grand .t-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.82);
+    }
+    .totals-row.grand .t-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ─── PAYMENT DETAILS ─── */
+    .payment-wrap { padding: 0 52px 28px; }
+
+    .payment-card {
+      background: var(--navy);
+      border-radius: 9px;
+      padding: 26px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* gradient top accent */
+    .payment-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2.5px;
+      background: var(--grad-h);
+    }
+
+    /* subtle glow corner */
+    .payment-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; right: -40px;
+      width: 150px; height: 150px;
+      background: radial-gradient(circle, rgba(0,207,255,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .pay-head {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pay-head-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px; height: 20px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.07);
+    }
+    .pay-head::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.09);
+    }
+
+    .pay-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pay-item { display: flex; flex-direction: column; gap: 3px; }
+
+    .pay-key {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .pay-val {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: 0.02em;
+    }
+
+    .pay-val.upi {
+      background: var(--grad-h);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+    }
+
+    /* ─── NOTES ─── */
+    .notes-wrap {
+      padding: 20px 52px 30px;
+    }
+
+    .notes-title {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 9px;
+    }
+
+    .notes-body {
+      font-size: 12px;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.85;
+      padding-left: 14px;
+      border-left: 2px solid var(--border);
+    }
+
+    /* ─── FOOTER ─── */
+    .inv-footer { }
+
+    .footer-stripe {
+      height: 3px;
+      background: var(--grad-h);
+    }
+
+    .footer-body {
+      background: var(--bg-alt);
+      padding: 16px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-body p {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* Diamond separator — echoes logo gem */
+    .footer-gem {
+      width: 7px; height: 7px;
+      background: var(--grad);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+
+    /* ─── PRINT ─── */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+      .action-bar { display: none !important; }
+      .invoice {
+        box-shadow: none;
+        border-radius: 0;
+        max-width: 100%;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+      /* Force background colors to print */
+      .inv-header       { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .grad-stripe      { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .meta-strip       { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .services-tbl thead tr.head-main { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .services-tbl tbody tr:nth-child(even) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .totals-row.grand { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .payment-card     { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .footer-body      { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ ACTION BAR ══ -->
+  <div class="action-bar">
+    <span class="doc-label">Invoice APX-2026-001 &nbsp;·&nbsp; Apex Digital</span>
+    <button class="btn-pdf" onclick="window.print()">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+           stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7.5 1v8M4.5 6l3 3 3-3"/>
+        <path d="M2 10.5v2a1 1 0 001 1h10a1 1 0 001-1v-2"/>
+      </svg>
+      Download as PDF
+    </button>
+  </div>
+
+  <!-- ══ INVOICE ══ -->
+  <div class="invoice">
+
+    <!-- HEADER -->
+    <header class="inv-header">
+
+      <!-- Left: Brand -->
+      <div class="brand-group">
+
+        <!-- SVG logo — geometric crystal A with cyan-to-purple gradient -->
+        <svg class="logo-mark" width="60" height="66" viewBox="0 0 60 66" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Main gradient: cyan top → blue mid → purple bottom -->
+            <linearGradient id="gMain" x1="30" y1="0" x2="30" y2="66" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#00CFFF"/>
+              <stop offset="50%"  stop-color="#185FA5"/>
+              <stop offset="100%" stop-color="#8B2BE2"/>
+            </linearGradient>
+            <!-- Right-leg gradient (slightly shifted for 3D feel) -->
+            <linearGradient id="gRight" x1="30" y1="0" x2="60" y2="66" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#00CFFF" stop-opacity="0.82"/>
+              <stop offset="100%" stop-color="#8B2BE2" stop-opacity="0.9"/>
+            </linearGradient>
+            <!-- Diamond gem gradient -->
+            <linearGradient id="gGem" x1="22" y1="35" x2="38" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#185FA5"/>
+              <stop offset="100%" stop-color="#8B2BE2"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Left outer leg: apex → bottom-left outer edge -->
+          <polygon points="30,2 2,64 15,64 30,22" fill="url(#gMain)"/>
+
+          <!-- Right outer leg: apex → bottom-right outer edge -->
+          <polygon points="30,2 58,64 45,64 30,22" fill="url(#gRight)"/>
+
+          <!-- Left inner facet — slight highlight for depth -->
+          <polygon points="30,22 15,64 21,64 30,42" fill="rgba(255,255,255,0.10)"/>
+
+          <!-- Right inner facet — slight shadow for depth -->
+          <polygon points="30,22 45,64 39,64 30,42" fill="rgba(0,0,0,0.12)"/>
+
+          <!-- Diamond gem (crossbar gap jewel) -->
+          <polygon points="30,36 22,50 30,62 38,50" fill="url(#gGem)"/>
+
+          <!-- Diamond top-left highlight facet -->
+          <polygon points="30,36 22,50 26,43" fill="rgba(255,255,255,0.24)"/>
+
+          <!-- Diamond bottom-right shadow facet -->
+          <polygon points="30,62 38,50 34,56" fill="rgba(0,0,0,0.18)"/>
+        </svg>
+
+        <div class="brand-text">
+          <div class="brand-apex">APEX</div>
+          <div class="brand-sub">— &nbsp;digital&nbsp; —</div>
+          <div class="brand-tag">Building Digital Experiences That Sell</div>
+        </div>
+      </div>
+
+      <!-- Right: Invoice label -->
+      <div class="inv-label">
+        <div class="inv-word">INVOICE</div>
+        <div class="inv-num">APX-2026-001</div>
+      </div>
+
+    </header><!-- /header -->
+
+    <!-- GRADIENT STRIPE -->
+    <div class="grad-stripe"></div>
+
+    <!-- META STRIP -->
+    <div class="meta-strip">
+      <div class="meta-dates">
+        <div class="meta-item">
+          <span class="meta-key">Invoice Date</span>
+          <span class="meta-val">15 June 2026</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Due Date</span>
+          <span class="meta-val">22 June 2026</span>
+        </div>
+      </div>
+      <span class="badge unpaid">
+        <span class="badge-dot"></span>
+        Unpaid
+      </span>
+    </div>
+
+    <!-- BILLING -->
+    <div class="billing">
+      <div class="billing-block">
+        <h5>From</h5>
+        <p class="b-name">Apex Digital</p>
+        <p class="b-detail">hello@apexdigital.in</p>
+        <p class="b-detail">apexdigital.in</p>
+      </div>
+      <div class="billing-block">
+        <h5>Bill To</h5>
+        <p class="b-name">Rahul Mehta</p>
+        <p class="b-company">TechStartup Pvt. Ltd.</p>
+        <p class="b-detail">rahul@techstartup.co</p>
+        <p class="b-detail">+91 98765 43210</p>
+        <p class="b-detail">Mumbai, Maharashtra, India</p>
+      </div>
+    </div>
+
+    <!-- SERVICES TABLE -->
+    <div class="table-wrap">
+      <p class="section-title">Services Rendered</p>
+      <table class="services-tbl">
+        <thead>
+          <tr class="head-main">
+            <th style="width:21%">Service</th>
+            <th style="width:36%">Description</th>
+            <th class="c" style="width:8%">Qty</th>
+            <th class="r" style="width:17%">Unit Price</th>
+            <th class="r" style="width:18%">Amount</th>
+          </tr>
+          <tr class="grad-bar"><td colspan="5"></td></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="svc-name">3D Scroll Website</td>
+            <td class="svc-desc">Premium scroll-driven website with 3D animations &amp; immersive UX</td>
+            <td class="c">1</td>
+            <td class="r">₹45,000</td>
+            <td class="r svc-amt">₹45,000</td>
+          </tr>
+          <tr>
+            <td class="svc-name">AI Automation Suite</td>
+            <td class="svc-desc">Full business workflow automation with AI integration &amp; n8n pipelines</td>
+            <td class="c">1</td>
+            <td class="r">₹25,000</td>
+            <td class="r svc-amt">₹25,000</td>
+          </tr>
+          <tr>
+            <td class="svc-name">AI Video Ad (30s)</td>
+            <td class="svc-desc">AI-generated product video ads with voiceover &amp; motion graphics</td>
+            <td class="c">2</td>
+            <td class="r">₹8,000</td>
+            <td class="r svc-amt">₹16,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TOTALS -->
+    <div class="totals-wrap">
+      <div class="totals-outer">
+        <div class="totals-inner">
+          <div class="totals-row">
+            <span class="t-label">Subtotal</span>
+            <span class="t-val">₹86,000</span>
+          </div>
+          <div class="totals-row disc">
+            <span class="t-label">Discount (10%)</span>
+            <span class="t-val">−₹8,600</span>
+          </div>
+          <div class="totals-row">
+            <span class="t-label">GST (18%)</span>
+            <span class="t-val">₹13,932</span>
+          </div>
+          <div class="totals-row grand">
+            <span class="t-label">Grand Total</span>
+            <span class="t-val">₹91,332</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAYMENT DETAILS -->
+    <div class="payment-wrap">
+      <div class="payment-card">
+        <div class="pay-head">
+          <span class="pay-head-icon">
+            <svg width="11" height="13" viewBox="0 0 11 13" fill="none">
+              <rect x="1" y="5" width="9" height="7" rx="1.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+              <path d="M3.5 5V3.5a2 2 0 014 0V5" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+              <circle cx="5.5" cy="8.5" r="0.8" fill="rgba(255,255,255,0.5)"/>
+            </svg>
+          </span>
+          Payment Details
+        </div>
+        <div class="pay-grid">
+          <div class="pay-item">
+            <span class="pay-key">Bank</span>
+            <span class="pay-val">HDFC Bank</span>
+          </div>
+          <div class="pay-item">
+            <span class="pay-key">Account No.</span>
+            <span class="pay-val">XXXX XXXX XXXX</span>
+          </div>
+          <div class="pay-item">
+            <span class="pay-key">IFSC Code</span>
+            <span class="pay-val">HDFC0XXXXXX</span>
+          </div>
+          <div class="pay-item">
+            <span class="pay-key">UPI</span>
+            <span class="pay-val upi">apexdigital@upi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="notes-wrap">
+      <p class="notes-title">Notes</p>
+      <p class="notes-body">
+        Payment is due within 7 days of invoice date. A 2% monthly late fee applies on outstanding
+        balances after the due date. Please include the invoice number in your payment reference.
+        For any queries, reach us at hello@apexdigital.in.
+      </p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="inv-footer">
+      <div class="footer-stripe"></div>
+      <div class="footer-body">
+        <p>Thank you for your business</p>
+        <div class="footer-gem"></div>
+        <p>apexdigital.in</p>
+      </div>
+    </footer>
+
+  </div><!-- /.invoice -->
+
+</body>
+</html>

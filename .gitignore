@@ -1,0 +1,41 @@
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# API credentials & tokens
+credentials.json
+token.json
+*.pem
+*.key
+
+# Invoice logs & output (persistent data — back up separately)
+logs/
+output/
+
+# Temp / intermediate files
+.tmp/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# Node (if added later)
+node_modules/
+.pnpm-store/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
